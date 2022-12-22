@@ -27,10 +27,13 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_margin="@dimen/default_margin"
+            android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
+            android:layout_margin="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -38,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_input_height"
                 android:gravity="top"
-                android:hint="@string/default_edit_text"/>
+                android:hint="@string/default_edit_text" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/classify_btn"
@@ -52,7 +55,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_classification"/>
+                tools:listitem="@layout/item_classification" />
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:menu="@menu/bottom_nav_menu" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -71,7 +79,4 @@
 
     </RelativeLayout>
 
-    <include
-        android:id="@+id/bottom_sheet_layout"
-        layout="@layout/info_bottom_sheet" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
