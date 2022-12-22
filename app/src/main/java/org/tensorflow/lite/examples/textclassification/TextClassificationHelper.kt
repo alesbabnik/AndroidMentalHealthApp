@@ -61,26 +61,15 @@ class TextClassificationHelper(
 
         // Directions for generating both models can be found at
         // https://www.tensorflow.org/lite/models/modify/model_maker/text_classification
-        if( currentModel == MOBILEBERT ) {
-            val options = BertNLClassifier.BertNLClassifierOptions
-                .builder()
-                .setBaseOptions(baseOptions)
-                .build()
+        val options = BertNLClassifier.BertNLClassifierOptions
+            .builder()
+            .setBaseOptions(baseOptions)
+            .build()
 
-            bertClassifier = BertNLClassifier.createFromFileAndOptions(
-                context,
-                MOBILEBERT,
-                options)
-        } else if (currentModel == WORD_VEC) {
-            val options = NLClassifier.NLClassifierOptions.builder()
-                .setBaseOptions(baseOptions)
-                .build()
-
-            nlClassifier = NLClassifier.createFromFileAndOptions(
-                context,
-                WORD_VEC,
-                options)
-        }
+        bertClassifier = BertNLClassifier.createFromFileAndOptions(
+            context,
+            MOBILEBERT,
+            options)
     }
 
     fun classify(text: String) {
