@@ -23,9 +23,12 @@ import android.widget.AdapterView
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.tensorflow.lite.examples.textclassification.databinding.ActivityMainBinding
 import org.tensorflow.lite.support.label.Category
+
+import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,6 +65,9 @@ class MainActivity : AppCompatActivity() {
         classifierHelper = TextClassificationHelper(
             context = this@MainActivity,
             listener = listener)
+
+        val botView: BottomNavigationView = _activityMainBinding!!.bottomNavigationView
+        //val botController = findNavController(R.id.nav_host_fragment_activity_main)
 
         // Classify the text in the TextEdit box (or the default if nothing is added)
         // on button click.

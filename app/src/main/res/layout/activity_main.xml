@@ -62,11 +62,15 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_classification" />
 
+
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
         </RelativeLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
