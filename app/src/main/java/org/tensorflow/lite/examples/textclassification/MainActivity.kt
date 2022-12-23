@@ -23,12 +23,16 @@ import android.widget.AdapterView
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.tensorflow.lite.examples.textclassification.databinding.ActivityMainBinding
 import org.tensorflow.lite.support.label.Category
 
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
 
@@ -67,20 +71,42 @@ class MainActivity : AppCompatActivity() {
             listener = listener)
 
         val botView: BottomNavigationView = _activityMainBinding!!.bottomNavigationView
-        //val botController = findNavController(R.id.nav_host_fragment_activity_main)
+        val botController = findNavController(R.id.nav_host_fragment_activity_main)
 
-        // Classify the text in the TextEdit box (or the default if nothing is added)
-        // on button click.
-        activityMainBinding.classifyBtn.setOnClickListener {
-            if (activityMainBinding.inputText.text.isNullOrEmpty()) {
-                classifierHelper.classify(getString(R.string.default_edit_text))
-            }
-            else {
-                classifierHelper.classify(activityMainBinding.inputText.text.toString())
+        val toolbar = _activityMainBinding!!.toolbar
+        val config = AppBarConfiguration(setOf(
+            R.id.questions, R.id.home, R.id.analysis))
+        setSupportActionBar(toolbar)
+        setupActionBarWithNavController(botController, config)
+        botView.setupWithNavController(botController)
+
+
+        // setOnItemSelectedListener is called when the user clicks on an item in the bottom sheet
+        _activityMainBinding!!.bottomNavigationView.setOnItemSelectedListener {
+            // switch to the selected item
+            when (it.itemId) {
+                R.id.questions -> {
+                    replaceFragment(QuestionsFragment())
+                    true
+                }
+                R.id.home -> {
+                    replaceFragment(HomeFragment())
+                    true
+                }
+                R.id.analysis -> {
+                    replaceFragment(AnalysisFragment())
+                    true
+                }
+                else -> false
             }
         }
+    }
 
-        activityMainBinding.results.adapter = adapter
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment)
+        fragmentTransaction.commit()
+        fragmentTransaction.addToBackStack(null)
     }
 
     override fun onBackPressed() {

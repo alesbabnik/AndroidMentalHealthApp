@@ -5,6 +5,46 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="664dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="59dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_input_height"
+                android:gravity="top"
+                android:hint="@string/default_edit_text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/classify_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/classify_btn_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                tools:listitem="@layout/item_classification" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </RelativeLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
