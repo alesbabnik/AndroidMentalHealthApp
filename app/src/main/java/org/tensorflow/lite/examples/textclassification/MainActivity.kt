@@ -70,15 +70,8 @@ class MainActivity : AppCompatActivity() {
             context = this@MainActivity,
             listener = listener)
 
-        val botView: BottomNavigationView = _activityMainBinding!!.bottomNavigationView
-        val botController = findNavController(R.id.nav_host_fragment_activity_main)
 
-        val toolbar = _activityMainBinding!!.toolbar
-        val config = AppBarConfiguration(setOf(
-            R.id.questions, R.id.home, R.id.analysis))
-        setSupportActionBar(toolbar)
-        setupActionBarWithNavController(botController, config)
-        botView.setupWithNavController(botController)
+        replaceFragment(HomeFragment())
 
 
         // setOnItemSelectedListener is called when the user clicks on an item in the bottom sheet
@@ -104,9 +97,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment)
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
-        fragmentTransaction.addToBackStack(null)
     }
 
     override fun onBackPressed() {
