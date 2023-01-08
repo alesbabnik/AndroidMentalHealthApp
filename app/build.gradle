@@ -38,6 +38,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'org.tensorflow.lite.examples.textclassification'
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 // import DownloadModels task

@@ -102,7 +102,6 @@ class TextClassificationHelper(
     companion object {
         const val DELEGATE_CPU = 0
         const val DELEGATE_NNAPI = 1
-        const val WORD_VEC = "wordvec.tflite"
         const val MOBILEBERT = "mobilebert.tflite"
     }
 }

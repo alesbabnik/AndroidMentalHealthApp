@@ -18,57 +18,20 @@ package org.tensorflow.lite.examples.textclassification
 
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.tensorflow.lite.examples.textclassification.databinding.ActivityMainBinding
-import org.tensorflow.lite.support.label.Category
-
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
 
     private var _activityMainBinding: ActivityMainBinding? = null
     private val activityMainBinding get() = _activityMainBinding!!
-    private lateinit var classifierHelper: TextClassificationHelper
-    private val adapter by lazy {
-        ResultsAdapter()
-    }
 
-    private val listener = object : TextClassificationHelper.TextResultsListener {
-        override fun onResult(results: List<Category>, inferenceTime: Long) {
-            runOnUiThread {
-
-                adapter.resultsList = results.sortedByDescending {
-                    it.score
-                }
-
-                adapter.notifyDataSetChanged()
-            }
-        }
-
-        override fun onError(error: String) {
-            Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-
-        // Create the classification helper that will do the heavy lifting
-        classifierHelper = TextClassificationHelper(
-            context = this@MainActivity,
-            listener = listener)
 
 
         replaceFragment(HomeFragment())
