@@ -5,15 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AnalysisFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ANALYSIS" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="279dp"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>

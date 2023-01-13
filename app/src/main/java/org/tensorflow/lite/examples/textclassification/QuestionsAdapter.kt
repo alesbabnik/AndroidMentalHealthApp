@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class QuestionsAdapter: RecyclerView.Adapter<QuestionsAdapter.ViewHolder>() {
     // "Sleep", "Nutrition", "Stress", "Alcohol"
-    val questions = arrayOf("Sleep", "Nutrition", "Stress", "Alcohol")
+    val questions = listOf(QuestionModel("Sleep", ""), QuestionModel("Nutrition", ""), QuestionModel("Stress", ""), QuestionModel("Alcohol", ""))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val question = questions[position]
+        val question = questions[position].question
         holder.question.text = question
     }
 
@@ -37,11 +37,16 @@ class QuestionsAdapter: RecyclerView.Adapter<QuestionsAdapter.ViewHolder>() {
                 if (position != RecyclerView.NO_POSITION) {
                     Toast.makeText(
                         itemView.context,
-                        "You clicked on ${questions[position]}",
+                        "You clicked on ${questions[position].question}",
                         Toast.LENGTH_SHORT
                     ).show()
-                    val intent = Intent(itemView.context, Question_sleep::class.java)
-                    intent.putExtra("question", questions[position])
+                    // main questionsAnswer hashmap
+                    val main = MainActivity()
+                    val questionsAnswers = questionsAnswers
+                    val intent = Intent(itemView.context, QuestionActivity::class.java)
+                    intent.putExtra("question", questions[position].question)
+                    intent.putExtra("currentAnswer", questionsAnswers[questions[position].question])
+                    main.currentQuestion = questions[position].question
                     itemView.context.startActivity(intent)
                 }
             }

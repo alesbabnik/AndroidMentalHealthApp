@@ -16,6 +16,7 @@
  */
 package org.tensorflow.lite.examples.textclassification
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -24,11 +25,15 @@ import org.tensorflow.lite.examples.textclassification.databinding.ActivityMainB
 import org.tensorflow.lite.examples.textclassification.fragments.AnalysisFragment
 import org.tensorflow.lite.examples.textclassification.fragments.HomeFragment
 import org.tensorflow.lite.examples.textclassification.fragments.QuestionsFragment
-
+var questionsAnswers = mutableMapOf<String, String>();
 class MainActivity : AppCompatActivity() {
 
     private var _activityMainBinding: ActivityMainBinding? = null
     private val activityMainBinding get() = _activityMainBinding!!
+    // public set of questionmodel objects
+
+    var currentQuestion: String? = null
+    var currentAnswer: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +42,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         // create adapter for questionsFragment recycler view
-
-
         replaceFragment(QuestionsFragment())
 
 
@@ -61,6 +64,11 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        for ((key, value) in questionsAnswers) {
+            println("Question: $key")
+            println("Answer: $value")
+        }
+        println("Questions and answers: $questionsAnswers")
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -76,6 +84,18 @@ class MainActivity : AppCompatActivity() {
             finishAfterTransition()
         } else {
             super.onBackPressed()
+        }
+    }
+
+    fun addQuestion(question: String?, answer: String?) {
+        questionsAnswers.put(question!!, answer!!)
+        // print whole questionsAnswers
+        println("Questions and answers: ${questionsAnswers.entries}")
+        // print amount of entries
+        println("Questions and answers: ${questionsAnswers.size}")
+        for ((key, value) in questionsAnswers) {
+            println("Question: $key")
+            println("Answer: $value")
         }
     }
 }

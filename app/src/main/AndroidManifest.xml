@@ -10,7 +10,8 @@
         android:taskAffinity=""
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Question_sleep"
+            android:name=".QuestionActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_question_sleep"
             android:theme="@style/AppTheme.NoActionBar">
