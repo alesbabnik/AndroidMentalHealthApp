@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/analysisFragment"
-        android:name="org.tensorflow.lite.examples.textclassification.AnalysisFragment"
+        android:name="org.tensorflow.lite.examples.textclassification.fragments.AnalysisFragment"
         android:label="fragment_analysis"
         tools:layout="@layout/fragment_analysis" />
     <fragment
         android:id="@+id/questionsFragment"
-        android:name="org.tensorflow.lite.examples.textclassification.QuestionsFragment"
+        android:name="org.tensorflow.lite.examples.textclassification.fragments.QuestionsFragment"
         android:label="fragment_questions"
         tools:layout="@layout/fragment_questions" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="org.tensorflow.lite.examples.textclassification.HomeFragment"
+        android:name="org.tensorflow.lite.examples.textclassification.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <activity

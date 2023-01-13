@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.textclassification
+package org.tensorflow.lite.examples.textclassification.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.tensorflow.lite.examples.textclassification.R
 
 class AnalysisFragment : Fragment() {
 

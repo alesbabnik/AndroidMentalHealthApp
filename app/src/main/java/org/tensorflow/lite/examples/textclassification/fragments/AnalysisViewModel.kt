@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.textclassification
+package org.tensorflow.lite.examples.textclassification.fragments
 
 import androidx.lifecycle.ViewModel
 

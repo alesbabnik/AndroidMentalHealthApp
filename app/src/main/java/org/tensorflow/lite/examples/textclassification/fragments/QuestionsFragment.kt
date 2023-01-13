@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.textclassification
+package org.tensorflow.lite.examples.textclassification.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.tensorflow.lite.examples.textclassification.QuestionsAdapter
+import org.tensorflow.lite.examples.textclassification.R
 import org.tensorflow.lite.examples.textclassification.databinding.FragmentQuestionsBinding
 
 class QuestionsFragment : Fragment() {

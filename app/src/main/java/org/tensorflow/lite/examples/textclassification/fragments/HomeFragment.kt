@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.textclassification
+package org.tensorflow.lite.examples.textclassification.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.tensorflow.lite.examples.textclassification.R
+import org.tensorflow.lite.examples.textclassification.ResultsAdapter
+import org.tensorflow.lite.examples.textclassification.TextClassificationHelper
 import org.tensorflow.lite.examples.textclassification.databinding.FragmentHomeBinding
 import org.tensorflow.lite.support.label.Category
 

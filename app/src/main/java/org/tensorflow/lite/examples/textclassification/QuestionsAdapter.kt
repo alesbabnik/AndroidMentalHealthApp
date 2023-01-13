@@ -1,5 +1,6 @@
 package org.tensorflow.lite.examples.textclassification
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,9 @@ class QuestionsAdapter: RecyclerView.Adapter<QuestionsAdapter.ViewHolder>() {
                         "You clicked on ${questions[position]}",
                         Toast.LENGTH_SHORT
                     ).show()
+                    val intent = Intent(itemView.context, Question_sleep::class.java)
+                    intent.putExtra("question", questions[position])
+                    itemView.context.startActivity(intent)
                 }
             }
         }

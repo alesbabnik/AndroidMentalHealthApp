@@ -21,6 +21,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import org.tensorflow.lite.examples.textclassification.databinding.ActivityMainBinding
+import org.tensorflow.lite.examples.textclassification.fragments.AnalysisFragment
+import org.tensorflow.lite.examples.textclassification.fragments.HomeFragment
+import org.tensorflow.lite.examples.textclassification.fragments.QuestionsFragment
 
 class MainActivity : AppCompatActivity() {
 
