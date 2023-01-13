@@ -10,6 +10,15 @@
         android:taskAffinity=""
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Question_sleep"
+            android:exported="false"
+            android:label="@string/title_activity_question_sleep"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -57,18 +57,12 @@ class HomeFragment : Fragment() {
         
         val classifyBtn = binding.classifyBtn
 
-        // print if button exists
-        println(classifyBtn)
-
         classifyBtn.setOnClickListener {
-            // check if classifierHelper is null
-            println("clicked")
             if (binding.inputText.text.isNullOrEmpty()) {
                 classifierHelper.classify(getString(R.string.default_edit_text))
             }
             else {
                 classifierHelper.classify(binding.inputText.text.toString())
-                println("input text is not null")
             }
         }
         binding.results.adapter = adapter
@@ -87,13 +81,11 @@ class HomeFragment : Fragment() {
         val classifyBtn = view.findViewById<View>(R.id.classify_btn)
         val binding = FragmentHomeBinding.bind(view)
         classifyBtn.setOnClickListener {
-            println("clicked")
             if (binding.inputText.text.isNullOrEmpty()) {
                 classifierHelper.classify(getString(R.string.default_edit_text))
             }
             else {
                 classifierHelper.classify(binding.inputText.text.toString())
-                println("input text is not null")
             }
         }
     }

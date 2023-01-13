@@ -33,8 +33,10 @@ class MainActivity : AppCompatActivity() {
         _activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
+        // create adapter for questionsFragment recycler view
 
-        replaceFragment(HomeFragment())
+
+        replaceFragment(QuestionsFragment())
 
 
         // setOnItemSelectedListener is called when the user clicks on an item in the bottom sheet
