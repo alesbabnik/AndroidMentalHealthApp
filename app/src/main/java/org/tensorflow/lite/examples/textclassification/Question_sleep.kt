@@ -20,21 +20,8 @@ class Question_sleep : AppCompatActivity() {
         binding = ActivityQuestionSleepBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
-        val navController = findNavController(R.id.nav_host_fragment_content_question_sleep)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_question_sleep)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        // get the question from the intent
+        val question = intent.getStringExtra("question")
+        binding.textViewQuestionTitle.text = question
     }
 }
