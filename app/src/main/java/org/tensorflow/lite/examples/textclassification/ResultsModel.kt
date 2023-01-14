@@ -3,11 +3,13 @@ package org.tensorflow.lite.examples.textclassification
 class ResultsModel {
     var question: String? = null
     var answer: String? = null
-    var result: Float? = null
+    var negative: Float? = null
+    var positive: Float? = null
 
-    constructor(question: String?, answer: String?, result: Float?) {
+    constructor(question: String?, answer: String?, negative: Float?, positive: Float?) {
         this.question = question
         this.answer = answer
-        this.result = result
+        this.negative = negative
+        this.positive = positive
     }
 }

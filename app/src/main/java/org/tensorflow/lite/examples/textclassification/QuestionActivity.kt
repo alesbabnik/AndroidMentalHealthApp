@@ -2,9 +2,12 @@ package org.tensorflow.lite.examples.textclassification
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.ui.AppBarConfiguration
 import org.tensorflow.lite.examples.textclassification.databinding.ActivityQuestionBinding
+import org.tensorflow.lite.examples.textclassification.fragments.QuestionsFragment
 
 class QuestionActivity : AppCompatActivity() {
 
@@ -20,25 +23,18 @@ class QuestionActivity : AppCompatActivity() {
         // get the question from the intent
         val question = intent.getStringExtra("question")
         binding.textViewQuestionTitle.text = question
-        println(question)
         val submitButton = binding.buttonSubmit
         submitButton.setOnClickListener {
             // get the answer from the edit text
             val answer = binding.editTextAnswer.text.toString()
             // add the question and answer to the hashmap
             val main = MainActivity()
-            // intent answer to main activity
-            val intent = Intent(this, MainActivity::class.java)
-            intent.getStringExtra("answer")
             // put the question and answer in the hashmap
-            main.currentAnswer = answer
-            main.currentQuestion = question
+            currentAnswer = answer
+            currentQuestion = question
             main.addQuestion(question, answer)
-            println("current answer: ${main.currentAnswer}")
-            println("current question: ${main.currentQuestion}")
-            // go back to the previous activity
-            AnalysisAdapter().submitAnswer(main.currentAnswer.toString(), main.currentQuestion.toString())
 
+            // go back to the previous activity
             finish()
         }
     }

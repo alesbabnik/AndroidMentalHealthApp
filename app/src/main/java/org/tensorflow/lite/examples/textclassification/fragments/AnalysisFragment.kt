@@ -4,34 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.tensorflow.lite.examples.textclassification.*
-import org.tensorflow.lite.examples.textclassification.databinding.FragmentAnalysisBinding
-import org.tensorflow.lite.support.label.Category
-import java.util.Collections.list
 
 class AnalysisFragment : Fragment() {
-    private lateinit var classifierHelper: TextClassificationHelper
-    private val adapter by lazy {
-        ResultsAdapter()
-    }
+    // private lateinit var classifierHelper: TextClassificationHelper
+    // private val adapter by lazy {
+    //     ResultsAdapter()
+    // }
 
-    private val listener = object : TextClassificationHelper.TextResultsListener {
-        override fun onError(error: String) {
-            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
-        }
+    // private val listener = object : TextClassificationHelper.TextResultsListener {
+    //     override fun onError(error: String) {
+    //         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+    //     }
 
-        override fun onResult(results: List<Category>, inferenceTime: Long) {
-            adapter.resultsList = results.sortedByDescending {
-                it.score
-            }
-            adapter.notifyDataSetChanged()
-        }
-    }
+    //     override fun onResult(results: List<Category>, inferenceTime: Long) {
+    //         adapter.resultsList = results.sortedByDescending {
+    //             it.score
+    //         }
+    //         adapter.notifyDataSetChanged()
+    //     }
+    // }
 
     companion object {
         fun newInstance() = AnalysisFragment()
@@ -43,16 +39,18 @@ class AnalysisFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        classifierHelper = TextClassificationHelper(
-            context = container!!.context,
-            listener = listener)
+        // classifierHelper = TextClassificationHelper(
+        //     context = container!!.context,
+        //     listener = listener)
+
+        // classifierHelper.classify(MainActivity().currentAnswer.toString())
+
 
         // recycler view
         val view = inflater.inflate(R.layout.fragment_analysis, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.analysisRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = AnalysisAdapter()
-
+        var adapter = AnalysisAdapter()
         recyclerView.adapter = adapter
 
         return view

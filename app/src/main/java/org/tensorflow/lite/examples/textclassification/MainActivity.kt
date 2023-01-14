@@ -16,25 +16,30 @@
  */
 package org.tensorflow.lite.examples.textclassification
 
-import android.content.Intent
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import org.tensorflow.lite.examples.textclassification.databinding.ActivityMainBinding
 import org.tensorflow.lite.examples.textclassification.fragments.AnalysisFragment
 import org.tensorflow.lite.examples.textclassification.fragments.HomeFragment
 import org.tensorflow.lite.examples.textclassification.fragments.QuestionsFragment
+import org.tensorflow.lite.task.core.BaseOptions
+import org.tensorflow.lite.task.text.nlclassifier.BertNLClassifier
+import java.util.concurrent.ScheduledThreadPoolExecutor
+
 var questionsAnswers = mutableMapOf<String, String>();
 var results = mutableMapOf<String, Float>();
+var currentQuestion: String? = null
+var currentAnswer: String? = null
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var bertClassifier: BertNLClassifier
     private var _activityMainBinding: ActivityMainBinding? = null
     private val activityMainBinding get() = _activityMainBinding!!
     // public set of questionmodel objects
-
-    var currentQuestion: String? = null
-    var currentAnswer: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,8 +48,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         // create adapter for questionsFragment recycler view
-        replaceFragment(QuestionsFragment())
+        replaceFragment(HomeFragment())
 
+
+        initmobilebert()
 
         // setOnItemSelectedListener is called when the user clicks on an item in the bottom sheet
         _activityMainBinding!!.bottomNavigationView.setOnItemSelectedListener {
@@ -90,17 +97,59 @@ class MainActivity : AppCompatActivity() {
 
     fun addQuestion(question: String?, answer: String?) {
         questionsAnswers.put(question!!, answer!!)
-        // print whole questionsAnswers
-        println("Questions and answers: ${questionsAnswers.entries}")
-        // print amount of entries
-        println("Questions and answers: ${questionsAnswers.size}")
         for ((key, value) in questionsAnswers) {
             println("Question: $key")
             println("Answer: $value")
         }
     }
 
-    fun calculateResult(question: String?, answer: String?) {
-        return;
+    fun submitAnswer() {
+        Log.d("Main", "Running submitAnswer")
+        // get key
+        val key = currentQuestion.toString()
+        // get answer
+        val answer = currentAnswer.toString()
+        Log.d("Main", key)
+        Log.d("Main", answer)
+        // get result
+        val executor = ScheduledThreadPoolExecutor(1)
+        executor.execute {
+            val result = bertClassifier.classify(answer)
+            Log.d("negative", result[0].score.toString())
+            Log.d("positive", result[1].score.toString())
+            AnalysisAdapter().updateResult(answer, key, result[0].score, result[1].score)
+        }
+        Toast.makeText(
+            this,
+            "Submission sent!",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+    fun initmobilebert() {
+        val baseOptionsBuilder = BaseOptions.builder()
+        when (0) {
+            DELEGATE_CPU -> {
+                // Default
+            }
+            DELEGATE_NNAPI -> {
+                baseOptionsBuilder.useNnapi()
+            }
+        }
+        val baseOptions = baseOptionsBuilder.build()
+
+        val options = BertNLClassifier.BertNLClassifierOptions
+            .builder()
+            .setBaseOptions(baseOptions)
+            .build()
+
+        bertClassifier = BertNLClassifier.createFromFileAndOptions(
+            this,
+            MOBILEBERT,
+            options)
+    }
+    companion object {
+        const val DELEGATE_CPU = 0
+        const val DELEGATE_NNAPI = 1
+        const val MOBILEBERT = "mobilebert.tflite"
     }
 }

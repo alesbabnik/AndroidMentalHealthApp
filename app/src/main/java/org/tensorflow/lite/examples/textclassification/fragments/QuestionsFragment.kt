@@ -8,8 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.tensorflow.lite.examples.textclassification.QuestionsAdapter
-import org.tensorflow.lite.examples.textclassification.R
+import org.tensorflow.lite.examples.textclassification.*
 import org.tensorflow.lite.examples.textclassification.databinding.FragmentQuestionsBinding
 
 class QuestionsFragment : Fragment() {
@@ -30,7 +29,6 @@ class QuestionsFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         val adapter = QuestionsAdapter()
         recyclerView.adapter = adapter
-        
 
         return root
     }
@@ -48,6 +46,17 @@ class QuestionsFragment : Fragment() {
         binding.questions.setHasFixedSize(true)
         val adapter = QuestionsAdapter()
         binding.questions.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        submit()
+    }
+
+    fun submit() {
+        val main = activity as MainActivity
+        if (currentAnswer != null || currentQuestion != null)
+            main.submitAnswer()
     }
 
 }

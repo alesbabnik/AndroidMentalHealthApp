@@ -35,18 +35,13 @@ class QuestionsAdapter: RecyclerView.Adapter<QuestionsAdapter.ViewHolder>() {
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    Toast.makeText(
-                        itemView.context,
-                        "You clicked on ${questions[position].question}",
-                        Toast.LENGTH_SHORT
-                    ).show()
                     // main questionsAnswer hashmap
                     val main = MainActivity()
                     val questionsAnswers = questionsAnswers
                     val intent = Intent(itemView.context, QuestionActivity::class.java)
                     intent.putExtra("question", questions[position].question)
                     intent.putExtra("currentAnswer", questionsAnswers[questions[position].question])
-                    main.currentQuestion = questions[position].question
+                    currentQuestion = questions[position].question
                     itemView.context.startActivity(intent)
                 }
             }

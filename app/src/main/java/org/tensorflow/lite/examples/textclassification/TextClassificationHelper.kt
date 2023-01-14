@@ -23,6 +23,8 @@ import org.tensorflow.lite.task.text.nlclassifier.BertNLClassifier
 import org.tensorflow.lite.task.text.nlclassifier.NLClassifier
 import java.util.concurrent.ScheduledThreadPoolExecutor
 
+var currentResult: String = ""
+
 class TextClassificationHelper(
     var currentDelegate: Int = 0,
     var currentModel: String = MOBILEBERT,
