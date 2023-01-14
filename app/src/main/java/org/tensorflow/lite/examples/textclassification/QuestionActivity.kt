@@ -36,8 +36,9 @@ class QuestionActivity : AppCompatActivity() {
             main.addQuestion(question, answer)
             println("current answer: ${main.currentAnswer}")
             println("current question: ${main.currentQuestion}")
-            
             // go back to the previous activity
+            AnalysisAdapter().submitAnswer(main.currentAnswer.toString(), main.currentQuestion.toString())
+
             finish()
         }
     }

@@ -26,6 +26,7 @@ import org.tensorflow.lite.examples.textclassification.fragments.AnalysisFragmen
 import org.tensorflow.lite.examples.textclassification.fragments.HomeFragment
 import org.tensorflow.lite.examples.textclassification.fragments.QuestionsFragment
 var questionsAnswers = mutableMapOf<String, String>();
+var results = mutableMapOf<String, Float>();
 class MainActivity : AppCompatActivity() {
 
     private var _activityMainBinding: ActivityMainBinding? = null
@@ -97,5 +98,9 @@ class MainActivity : AppCompatActivity() {
             println("Question: $key")
             println("Answer: $value")
         }
+    }
+
+    fun calculateResult(question: String?, answer: String?) {
+        return;
     }
 }
