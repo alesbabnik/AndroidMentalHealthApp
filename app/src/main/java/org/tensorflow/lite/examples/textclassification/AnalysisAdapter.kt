@@ -12,7 +12,6 @@ val defaultdata = listOf(ResultsModel("Sleep", "Sleep", -0.0f, -0.0f), ResultsMo
 var resultsList: List<ResultsModel> = defaultdata
 
 class AnalysisAdapter: RecyclerView.Adapter<AnalysisAdapter.ViewHolder>() {
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AnalysisAdapter.ViewHolder, position: Int) {
         val question = resultsList[position].question
         val answer = resultsList[position].answer
@@ -23,13 +22,6 @@ class AnalysisAdapter: RecyclerView.Adapter<AnalysisAdapter.ViewHolder>() {
         // remove scientific notation
         var n = negative?.times(100)?.roundToInt()?.toFloat()
         var p = positive?.times(100)?.roundToInt()?.toFloat()
-        // if more than 2 0 deciamls then replace with 0
-        if (positive!! < 0.01f) {
-            p = 0.0f
-        }
-        if (negative!! < 0.01f) {
-            n = 0.0f
-        }
         holder.result.text = "Negative: "+n.toString()+"% Positive: "+p.toString()+"%"
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -73,5 +65,9 @@ class AnalysisAdapter: RecyclerView.Adapter<AnalysisAdapter.ViewHolder>() {
         resultsList = resultsList.filter { it.question != Key }
         resultsList = resultsList + ResultsModel(Key, Answer, neg, pos)
         notifyDataSetChanged()
+    }
+
+    fun getAnalysis(): List<ResultsModel> {
+        return resultsList
     }
 }

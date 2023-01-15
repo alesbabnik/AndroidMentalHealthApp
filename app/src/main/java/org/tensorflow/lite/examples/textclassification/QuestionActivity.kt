@@ -11,7 +11,6 @@ import org.tensorflow.lite.examples.textclassification.fragments.QuestionsFragme
 
 class QuestionActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityQuestionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +21,16 @@ class QuestionActivity : AppCompatActivity() {
 
         // get the question from the intent
         val question = intent.getStringExtra("question")
-        binding.textViewQuestionTitle.text = question
+        var desc = ""
+        if (question == "Sleep")
+            desc = "How well would you describe your sleep quality last night?"
+        else if (question == "Nutrition")
+            desc = "How well would you describe your nutrition intake?"
+        else if (question == "Stress")
+            desc = "How well would you describe your stress during the day?"
+        else if (question == "Alcohol")
+            desc = "How well would you describe your alcohol consumption in general?"
+        binding.textViewQuestionTitle.text = desc
         val submitButton = binding.buttonSubmit
         submitButton.setOnClickListener {
             // get the answer from the edit text
@@ -39,13 +47,10 @@ class QuestionActivity : AppCompatActivity() {
         }
     }
 
-    // override the back button
     override fun onBackPressed() {
-        // go back to the previous activity
         finish()
     }
 
-    // print the hashmap when the activity is finished
     override fun onDestroy() {
         super.onDestroy()
         val main = MainActivity()
