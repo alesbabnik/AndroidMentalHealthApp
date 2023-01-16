@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.textclassification
+package org.tensorflow.lite.examples.textclassification.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,8 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import org.tensorflow.lite.examples.textclassification.R
+import org.tensorflow.lite.examples.textclassification.adapters.AnalysisAdapter
 
 class GraphActivity : AppCompatActivity() {
     lateinit var barChart: BarChart

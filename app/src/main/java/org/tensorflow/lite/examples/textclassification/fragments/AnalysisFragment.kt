@@ -1,6 +1,5 @@
 package org.tensorflow.lite.examples.textclassification.fragments
 
-import android.content.ClipData.newIntent
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,26 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.tensorflow.lite.examples.textclassification.*
+import org.tensorflow.lite.examples.textclassification.activities.GraphActivity
+import org.tensorflow.lite.examples.textclassification.adapters.AnalysisAdapter
 
 class AnalysisFragment : Fragment() {
-    // private lateinit var classifierHelper: TextClassificationHelper
-    // private val adapter by lazy {
-    //     ResultsAdapter()
-    // }
-
-    // private val listener = object : TextClassificationHelper.TextResultsListener {
-    //     override fun onError(error: String) {
-    //         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
-    //     }
-
-    //     override fun onResult(results: List<Category>, inferenceTime: Long) {
-    //         adapter.resultsList = results.sortedByDescending {
-    //             it.score
-    //         }
-    //         adapter.notifyDataSetChanged()
-    //     }
-    // }
-
     companion object {
         fun newInstance() = AnalysisFragment()
     }
@@ -42,12 +25,6 @@ class AnalysisFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // classifierHelper = TextClassificationHelper(
-        //     context = container!!.context,
-        //     listener = listener)
-
-        // classifierHelper.classify(MainActivity().currentAnswer.toString())
-
 
         // recycler view
         val view = inflater.inflate(R.layout.fragment_analysis, container, false)

@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.tensorflow.lite.examples.textclassification.*
+import org.tensorflow.lite.examples.textclassification.activities.MainActivity
+import org.tensorflow.lite.examples.textclassification.activities.currentAnswer
+import org.tensorflow.lite.examples.textclassification.activities.currentQuestion
+import org.tensorflow.lite.examples.textclassification.adapters.QuestionsAdapter
 import org.tensorflow.lite.examples.textclassification.databinding.FragmentQuestionsBinding
 
 class QuestionsFragment : Fragment() {

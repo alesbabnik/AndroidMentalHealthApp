@@ -1,17 +1,16 @@
-package org.tensorflow.lite.examples.textclassification
+package org.tensorflow.lite.examples.textclassification.activities
 
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import org.tensorflow.lite.examples.textclassification.R
+import org.tensorflow.lite.examples.textclassification.adapters.AnalysisAdapter
+import org.tensorflow.lite.examples.textclassification.adapters.ViewPagerAdapter
 import org.tensorflow.lite.examples.textclassification.databinding.ActivityMainBinding
-import org.tensorflow.lite.examples.textclassification.fragments.AnalysisFragment
-import org.tensorflow.lite.examples.textclassification.fragments.HomeFragment
-import org.tensorflow.lite.examples.textclassification.fragments.QuestionsFragment
 import org.tensorflow.lite.task.core.BaseOptions
 import org.tensorflow.lite.task.text.nlclassifier.BertNLClassifier
 import java.util.concurrent.ScheduledThreadPoolExecutor
@@ -24,7 +23,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
-    private var icons = intArrayOf(R.drawable.ic_baseline_home_24, R.drawable.ic_baseline_question_answer_24, R.drawable.ic_baseline_poll_24)
+    private var icons = intArrayOf(
+        R.drawable.ic_baseline_home_24,
+        R.drawable.ic_baseline_question_answer_24,
+        R.drawable.ic_baseline_poll_24
+    )
 
     private lateinit var bertClassifier: BertNLClassifier
     private var _activityMainBinding: ActivityMainBinding? = null

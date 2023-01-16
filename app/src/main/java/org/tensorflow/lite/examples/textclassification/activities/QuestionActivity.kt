@@ -1,13 +1,8 @@
-package org.tensorflow.lite.examples.textclassification
+package org.tensorflow.lite.examples.textclassification.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.navigation.ui.AppBarConfiguration
 import org.tensorflow.lite.examples.textclassification.databinding.ActivityQuestionBinding
-import org.tensorflow.lite.examples.textclassification.fragments.QuestionsFragment
 
 class QuestionActivity : AppCompatActivity() {
 
